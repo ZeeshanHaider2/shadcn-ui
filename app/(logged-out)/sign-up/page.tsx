@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
 
 const formSchema = z.object({
     email: z.string().email(),
@@ -153,7 +154,7 @@ return(
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button variant="outline" className="normal-case flex  justify-between pr-1">
-                       <span>Pick A date </span>
+                    {!!field.value ? format(field.value, "PPP") : <span>Pick A date </span>}
                        <CalendarIcon/>
                     </Button>
                   </FormControl>
@@ -203,3 +204,4 @@ return(
 
 }
 
+//Note: Shadcn Ui calandar  is simply  a rapper around React day picker component
