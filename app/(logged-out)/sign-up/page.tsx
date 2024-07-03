@@ -14,20 +14,10 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 
-const formSchema = z.object({
-    email: z.string().email(),
+const accountTypeSchema =z.object({
     accountType: z.enum(["personal","company"]),
     companyName:z.string().optional(),
     numberOfEmployees: z.coerce.number().optional(),
-    dob: z.date().refine((date)=> {
-     const today = new Date();
-     const eighteenYearsAgo = new Date(
-      today.getFullYear() - 18,
-      today.getMonth(),
-      today.getDate()
-     );
-     return date <= eighteenYearsAgo;
-    }, "You must be atleast 18 years old")
 }).superRefine((data,ctx)=> {
     if(data.accountType==="company" && !data.companyName){
         ctx.addIssue({
@@ -44,6 +34,36 @@ const formSchema = z.object({
         })
     }
 })
+const passwordSchema = z.object({
+    password:z.string().min(8, "password must contain at least 8 characters").refine((password)=>{
+        //must contain 1 special and 1 uppercase character
+          return /^(?=.*[!@#$%^&*]).*$/.test(password);
+      },"Password must contain 1 special character and 1 uppercase letter"),
+      passwordConfirm:z.string()
+}).superRefine((data,ctx)=> {
+    if(data.password !== data.passwordConfirm){
+       ctx.addIssue({
+           code: z.ZodIssueCode.custom,
+           path: ["passwordConfirm"],
+           message: "Password do not match",
+       });
+    }
+})
+const baseSchema = z.object({
+    email: z.string().email(),
+    dob: z.date().refine((date)=> {
+     const today = new Date();
+     const eighteenYearsAgo = new Date(
+      today.getFullYear() - 18,
+      today.getMonth(),
+      today.getDate()
+     );
+     return date <= eighteenYearsAgo;
+    }, "You must be at least 18 years old"),
+    
+})
+
+const formSchema = baseSchema.and(passwordSchema).and(accountTypeSchema);
 export default function signupPage(){
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -178,6 +198,32 @@ return(
               </Popover>
               <FormControl>
                 
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Password</FormLabel>
+              <FormControl>
+                <Input placeholder="........" type="password" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="passwordConfirm"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Confirm Password</FormLabel>
+              <FormControl>
+                <Input placeholder="........" type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
