@@ -10,7 +10,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Popover, PopoverTrigger } from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 
 const formSchema = z.object({
     email: z.string().email(),
@@ -54,7 +55,9 @@ const handleSubmit = () =>{
     console.log("kkk")
 };
 const accountType= form.watch("accountType");
-    
+
+const dobFromDate = new Date();
+dobFromDate.setFullYear(dobFromDate.getFullYear()-120);
 return(
     <>
         <PersonStandingIcon size={50}/>
@@ -155,6 +158,22 @@ return(
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
+                <PopoverContent align="start" className="w-auto p-0">
+                    <Calendar mode="single" 
+                    defaultMonth={field.value} 
+                    selected={field.value}
+                    onSelect={field.onChange}
+                    fixedWeeks
+                    weekStartsOn={1}
+                    fromDate={dobFromDate}
+                    toDate={new Date()}
+                    //disabled={(date)=>{
+                      //return date.getDay()=== 0 || date.getDay()=== 6
+                    //}}
+                    captionLayout="dropdown-buttons"
+                    />
+                    
+                </PopoverContent>
               </Popover>
               <FormControl>
                 
