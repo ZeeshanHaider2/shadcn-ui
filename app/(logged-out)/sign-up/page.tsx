@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
+import { PasswordInput } from "@/components/ui/password-input";
 
 const accountTypeSchema =z.object({
     accountType: z.enum(["personal","company"]),
@@ -210,7 +211,7 @@ return(
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="........" type="password" {...field} />
+                <PasswordInput placeholder="........" type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -223,7 +224,8 @@ return(
             <FormItem>
               <FormLabel>Confirm Password</FormLabel>
               <FormControl>
-                <Input placeholder="........" type="password" {...field} />
+                <PasswordInput placeholder="........"  
+                {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

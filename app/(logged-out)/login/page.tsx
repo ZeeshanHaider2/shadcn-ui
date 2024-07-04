@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 
 const formSchema = z.object({
     email: z.string().email(),
@@ -63,7 +64,7 @@ const handleSubmit = () =>{
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="password" type="password" {...field} />
+                <PasswordInput placeholder="........"  {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
