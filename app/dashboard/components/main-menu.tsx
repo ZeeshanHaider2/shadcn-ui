@@ -5,11 +5,12 @@ import Link from "next/link";
 import { LightDarkToggle } from "@/components/ui/light-dark-toggle";
 
 export default function MainMenu(){
-    return  <div className="bg-muted overflow-auto p-4 flex flex-col">
-    <div className="border-b dark:border-b-black border-b-zink-300 pb-4">
+    return  (
+    <nav className="bg-muted overflow-auto p-4 flex flex-col">
+    <header className="border-b dark:border-b-black border-b-zink-300 pb-4">
         <MenuTitle/>
-    </div>
-    <div className="py-4 grow">
+    </header>
+    <ul className="py-4 grow">
         <MenuItem href="/dashboard">
             My dashboard
         </MenuItem>
@@ -25,8 +26,8 @@ export default function MainMenu(){
         <MenuItem href="/dashboard/settings">
            Settings
         </MenuItem>
-    </div>
-    <div className="flex gap-2 items-center">
+    </ul>
+    <footer className="flex gap-2 items-center">
        <Avatar>
         <AvatarFallback className="bg-blue-300 dark:bg-blue-600">
             Zee
@@ -34,6 +35,7 @@ export default function MainMenu(){
        </Avatar>
        <Link href="/" className="hover:underline">Logout</Link>
        <LightDarkToggle className="ml-auto"/>
-    </div>
-    </div>
+    </footer>
+    </nav>
+    )
 }
