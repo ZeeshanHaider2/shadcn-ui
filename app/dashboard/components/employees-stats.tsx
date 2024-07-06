@@ -1,11 +1,16 @@
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertTriangleIcon, BadgeCheckIcon, UserCheck2Icon, UserIcon, UserRoundX } from "lucide-react";
+import { AlertTriangleIcon, BadgeCheckIcon, PartyPopperIcon, UserCheck2Icon, UserIcon, UserRoundX } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import cm from '@/public/images/cm.jpg'
+import rl from '@/public/images/rl.jpg'
+import tf from '@/public/images/tf.jpg'
 
 export default function EmployeesStats(){
     const totalEmployees = 100;
-    const employeesPresent = 60;
+    const employeesPresent = 80;
     const employeesPresentPercentage = (employeesPresent/totalEmployees)* 100;
     return (
     <div className="grid lg:grid-cols-3 gap-4">
@@ -60,12 +65,28 @@ export default function EmployeesStats(){
                 </span>}
             </CardFooter>
             </Card>
-        <Card className="border-blue-500">
+        <Card className="border-blue-500 flex flex-col">
             <CardHeader className="pb-2">
                 <CardTitle className="text-base">
                 Employee of the month
                 </CardTitle>
-            </CardHeader></Card>
+              <CardContent className="flex gap-2 items-center">
+                 <Avatar>
+                    <Image src={cm} alt="Employee of the month avatar"/>
+                    <AvatarFallback>
+                        CM
+                    </AvatarFallback>
+                 </Avatar>
+                 <span className="text-2xl">Colin Murray!</span>
+              </CardContent>
+              <CardFooter className="flex gap-2 items-center text-xs text-muted-foreground mt-auto">
+                <span className="text-xs text-yellow-500 flex gap-1 items-center">
+                <PartyPopperIcon/>
+                <span>Congratulations!!!!</span>
+                </span>
+             </CardFooter>
+            </CardHeader>
+            </Card>
     </div>
     )
 }
