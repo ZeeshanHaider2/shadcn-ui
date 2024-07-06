@@ -1,18 +1,20 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertTriangleIcon, BadgeCheckIcon, PartyPopperIcon, UserCheck2Icon, UserIcon, UserRoundX } from "lucide-react";
+import { AlertTriangleIcon, BadgeCheckIcon, LaptopIcon, PartyPopperIcon, UserCheck2Icon, UserIcon, UserRoundX } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import cm from '@/public/images/cm.jpg'
 import rl from '@/public/images/rl.jpg'
 import tf from '@/public/images/tf.jpg'
+import WorkLocationTrends from "./work-location-trends";
 
 export default function EmployeesStats(){
     const totalEmployees = 100;
     const employeesPresent = 80;
     const employeesPresentPercentage = (employeesPresent/totalEmployees)* 100;
     return (
+    <>
     <div className="grid lg:grid-cols-3 gap-4">
         <Card>
             <CardHeader className="pb-2">
@@ -88,5 +90,18 @@ export default function EmployeesStats(){
             </CardHeader>
             </Card>
     </div>
+    <Card className="my-4">
+        <CardHeader>
+            <CardTitle className="text-lg flex items-center gap-2">
+                <LaptopIcon/>
+             <span>Employee Work Location Trends</span>
+            </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <WorkLocationTrends/>
+        </CardContent>
+    </Card>
+   </>
     )
+
 }
