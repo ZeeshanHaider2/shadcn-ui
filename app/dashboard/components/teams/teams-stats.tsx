@@ -1,13 +1,58 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertTriangleIcon, BadgeCheckIcon, LaptopIcon, ListChecksIcon, PartyPopperIcon, UserCheck2Icon, UserIcon, UserRoundX, UsersIcon } from "lucide-react";
+import { AlertTriangleIcon, BadgeCheckIcon, LaptopIcon, ListChecksIcon, PartyPopperIcon, StarIcon, UserCheck2Icon, UserIcon, UserRoundX, UsersIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import cm from '@/public/images/cm.jpg'
 import rl from '@/public/images/rl.jpg'
 import tf from '@/public/images/tf.jpg'
+import {  Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
+
+
+const teamLeaders = [
+    {
+      firstName: "Colin",
+      lastName: "Murray",
+      avatar: cm,
+    },
+    {
+      firstName: "Tom",
+      lastName: "Phillips",
+    },
+    {
+      firstName: "Liam",
+      lastName: "Fuentes",
+    },
+    {
+      firstName: "Tina",
+      lastName: "Fey",
+      avatar: tf,
+    },
+    {
+      firstName: "Katie",
+      lastName: "Johnson",
+    },
+    {
+      firstName: "Tina",
+      lastName: "Jones",
+    },
+    {
+      firstName: "Amy",
+      lastName: "Adams",
+    },
+    {
+      firstName: "Ryan",
+      lastName: "Lopez",
+      avatar: rl,
+    },
+    {
+      firstName: "Jenny",
+      lastName: "Jones",
+    },
+  ];
+  
 
 export default function TeamsStats(){
     
@@ -36,12 +81,32 @@ export default function TeamsStats(){
         </Card>
         <Card>
             <CardHeader className="pb-2">
-                <CardTitle className="text-base">
-                 Team Leaders
+                <CardTitle className="text-base flex justify-between">
+                 <span>Team Leaders</span>
+                 <StarIcon className="text-yellow-500 items-center"/>
                 </CardTitle>
             </CardHeader>
-            <CardContent className="flex justify-between items-center">
-               
+            <CardContent className="flex flex-wrap gap-2">
+               {teamLeaders.map(teamLeader => (
+                 <TooltipProvider key={`${teamLeader.firstName}${teamLeader.lastName}`}>
+                   <Tooltip>
+                     <TooltipTrigger asChild>
+                      <Avatar>
+                        {!!teamLeader.avatar &&
+                        <Image src={teamLeader.avatar} alt={`${teamLeader.firstName}${teamLeader.lastName} avatar`}/>    
+                        }
+                        <AvatarFallback>
+                            {teamLeader.firstName[0]}
+                            {teamLeader.lastName[0]}
+                        </AvatarFallback>
+                      </Avatar>
+                     </TooltipTrigger>
+                     <TooltipContent>
+                     {teamLeader.firstName}{teamLeader.lastName}
+                     </TooltipContent>
+                   </Tooltip>
+                 </TooltipProvider>
+               ))}
             </CardContent>
             
             </Card>
