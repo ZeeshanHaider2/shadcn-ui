@@ -72,6 +72,7 @@ export default function EmployeesStats(){
                 <CardTitle className="text-base">
                 Employee of the month
                 </CardTitle>
+                </CardHeader>
               <CardContent className="flex gap-2 items-center">
                  <Avatar>
                     <Image src={cm} alt="Employee of the month avatar"/>
@@ -87,7 +88,7 @@ export default function EmployeesStats(){
                 <span>Congratulations!!!!</span>
                 </span>
              </CardFooter>
-            </CardHeader>
+           
             </Card>
     </div>
     <Card className="my-4">
