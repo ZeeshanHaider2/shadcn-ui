@@ -1,13 +1,14 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertTriangleIcon, BadgeCheckIcon, LaptopIcon, ListChecksIcon, PartyPopperIcon, StarIcon, UserCheck2Icon, UserIcon, UserRoundX, UsersIcon } from "lucide-react";
+import { AlertTriangleIcon, BadgeCheckIcon, LaptopIcon, ListChecksIcon, PartyPopperIcon, PieChartIcon, StarIcon, UserCheck2Icon, UserIcon, UserRoundX, UsersIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import cm from '@/public/images/cm.jpg'
 import rl from '@/public/images/rl.jpg'
 import tf from '@/public/images/tf.jpg'
 import {  Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import TeamDistributionChart from "./team-distribution-chart";
 
 
 
@@ -112,11 +113,14 @@ export default function TeamsStats(){
             </Card>
         <Card >
             <CardHeader className="pb-2">
-                <CardTitle className="text-base">
-              Team Distribution
+            <CardTitle className="text-base flex justify-between">
+                 <span>Team distribution</span>
+                 <PieChartIcon />
                 </CardTitle>
                 </CardHeader>
-              <CardContent className="flex gap-2 items-center"></CardContent>
+              <CardContent >
+                <TeamDistributionChart/>
+              </CardContent>
             </Card>
     </div>
     <Card className="my-4">
