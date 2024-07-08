@@ -9,6 +9,7 @@ import rl from '@/public/images/rl.jpg'
 import tf from '@/public/images/tf.jpg'
 import {  Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import TeamDistributionChart from "./team-distribution-chart";
+import SupportTicketResolved from "./support-tickets-resolved";
 
 
 
@@ -118,7 +119,7 @@ export default function TeamsStats(){
                  <PieChartIcon />
                 </CardTitle>
                 </CardHeader>
-              <CardContent >
+              <CardContent className="pb-0" >
                 <TeamDistributionChart/>
               </CardContent>
             </Card>
@@ -131,7 +132,7 @@ export default function TeamsStats(){
             </CardTitle>
         </CardHeader>
         <CardContent className="pl-0">
-          Line grapgh
+          <SupportTicketResolved/>
         </CardContent>
     </Card>
    </>
