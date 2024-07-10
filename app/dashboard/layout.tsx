@@ -10,12 +10,12 @@ export default function DashboardLayout({children,}:{children:React.ReactNode}){
 
     const isDesktop = useMediaQuery ("(min-width:768px)");
  
-   return <div className="grid md:grid-cols-[250px_1fr] h-screen">
+   return ( <div className="md:grid md:grid-cols-[250px_1fr] h-screen">
     <MainMenu className="hidden md:flex"/>
    { !isDesktop && (
     <div className="p-4 flex justify-between block md:hidden sticky top-0 left-0 bg-background border-b border-border">
        <MenuTitle/>
-       <Drawer>
+       <Drawer direction="right">
          <DrawerTrigger>
             <MenuIcon/>
          </DrawerTrigger>
@@ -30,4 +30,5 @@ export default function DashboardLayout({children,}:{children:React.ReactNode}){
         {children}
     </div>
    </div> 
+   )
 }
