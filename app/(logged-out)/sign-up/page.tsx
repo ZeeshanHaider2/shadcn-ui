@@ -54,12 +54,12 @@ const formSchema = z
       .refine((checked) => checked, "You must accept the terms and conditions"),
     dob: z.date().refine((date) => {
       const today = new Date();
-      const eighteedYearsAgo = new Date(
+      const eighteenYearsAgo = new Date(
         today.getFullYear() - 18,
         today.getMonth(),
         today.getDate()
       );
-      return date <= eighteedYearsAgo;
+      return date <= eighteenYearsAgo;
     }, "You must be at least 18 years old"),
     password: z
       .string()
