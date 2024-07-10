@@ -51,7 +51,7 @@ export const columns: ColumnDef<Employee>[] = [
     accessorKey: "isTeamLeader",
     header: "",
     cell: ({row}) => {
-      const isTeamLeader:booloean = row.getValue("isTeamLeader");
+      const isTeamLeader:boolean = row.getValue("isTeamLeader");
       return isTeamLeader ? <Badge variant="success">
          Team leader
       </Badge>:null;
