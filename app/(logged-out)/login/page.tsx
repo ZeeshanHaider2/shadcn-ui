@@ -17,7 +17,7 @@ const formSchema = z.object({
     password: z.string()
 });
 
-export default function Login() {
+export default function LoginPage() {
     const router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
